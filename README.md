@@ -71,7 +71,6 @@ npm run dev
 Visit `http://localhost:3000` to view the application.
 
 ## Prerequisites
-
 Ensure the following are installed in the Project Folder `/Hom3Town-v3/account-kit-app`
 
 - Node.js 18+
@@ -114,7 +113,6 @@ Ensure the following are installed in the Project Folder `/Hom3Town-v3/account-k
 3. Configure Account Kit authentication
 
 ### Avatar Display Component
-
 ```tsx
 // Small size (32x64px)
 <Avatar 
@@ -130,7 +128,6 @@ Ensure the following are installed in the Project Folder `/Hom3Town-v3/account-k
 ```
 
 ### Character Creator
-
 ```tsx
 <CharacterCreatorClient defaultImagePath="/images/default-avatar.png" />
 ```
@@ -151,7 +148,6 @@ npm start
 ## Data Structure
 
 Avatar configurations are stored with the following structure:
-
 ```typescript
 interface SelectedFrames {
     body: number | null;
