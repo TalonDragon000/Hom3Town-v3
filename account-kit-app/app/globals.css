@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: #000000;
+  --background-start-rgb: #d6dbdc;
+  --background-end-rgb: #ffffff;
+  --blue-color: #4a90e2;
+  --orange-color: #eca15a;
+  --green-color: #4ecca6;
+  --cozy-cottage: url('/images/cozy-cottage.jpg');
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground-rgb: #ffffff;
+    --background-start-rgb: #000000;
+    --background-end-rgb: #000000;
+  }
+}
+
+.navbar {
+  justify-content: space-between;
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  margin: auto; 
+  border-bottom: 4px solid #6b7280; /* border-gray-500 */
+  z-index: 100;
+}
+
+.nav-item-left {
+  margin: 20px auto 20px 100px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.nav-login {
+  margin: auto 100px auto 20px;
+  font-weight: bold;
+  color: white;
+  background-color: var(--blue-color);
+  border-radius: 5px;
+  padding: 15px 15px;
+}
+
+.navbar-bg {
+  background: var(--cozy-cottage);
+  background-size: fill;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-bottom: 4px solid #6b7280; /* border-gray-500 */
+  z-index: 100;
+}
+
+.btn {
+  background-color: var(--blue-color);
+  border-radius: 5px;
+  padding: 15px 15px;
+  color: white;
+  width: 200px;
+}
+
+.btn:hover {
+  background-color: var(--orange-color);
+}
+
+.btn-disabled {
+  background-color: #d1d5db;
+  color: white;
+  border-radius: 5px;
+  padding: 15px 15px;
+  width: 200px;
+}
+
+.btn-disabled:hover {
+  background-color: #d1d5db;
+  color: white;
+  border-radius: 5px;
+  padding: 15px 15px;
+  width: 200px;
+}
+
+.btn-coming-soon:hover {
+  background-color: #d1d5db;
+  color: white;
+  border-radius: 5px;
+  padding: 15px 15px;
+  width: 200px;
+}
+
+body {
+  color: var(--foreground-rgb);
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--background-end-rgb)
+    )
+    var(--background-start-rgb);
+}
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+}
+
+.flex-grow {
+  padding-bottom: 100px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
