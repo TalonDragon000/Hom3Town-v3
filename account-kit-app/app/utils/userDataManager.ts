@@ -1,7 +1,5 @@
 'use client';
-import type { User } from "@account-kit/signer";
-type UseUserResult = (User & { type: "eoa" | "sca" }) | null;
-
+import { User } from "@account-kit/react";
 import { SelectedFrames } from "./characterData";
 
 export interface UserData {
@@ -64,12 +62,12 @@ export class UserDataManager {
         return updatedData;
     }
 
-    updateFromAccountKit(user: UseUserResult): UserData {
+    updateFromAccountKit(user: User): UserData {
         console.log('UserDataManager - Updating from AccountKit:', user);
         // Preserve existing avatar config when updating from AccountKit
         const currentData = this.getUserData();
         return this.saveUserData({
-            address: user?.address || null,
+            address: user.address || null,
             avatarConfig: currentData.avatarConfig // Preserve existing avatar config
         });
     }

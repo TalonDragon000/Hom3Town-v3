@@ -19,12 +19,12 @@ export default function AuthButton() {
       ) : user ? (
         <div className="flex gap-4 items-center">
           <span>{(user.address ?? "anon").slice(0, 6)}...</span>
-          <button className="btn" onClick={() => logout()}>
+          <button onClick={() => logout()}>
             Log out
           </button>
         </div>
       ) : (
-        <button className="btn" onClick={openAuthModal}>
+        <button onClick={openAuthModal}>
           Login
         </button>
       )}

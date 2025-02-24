@@ -15,9 +15,7 @@ export const Providers = (
         queryClient={queryClient}
         initialState={props.initialState}
       >
-        <div className="relative">
-          {props.children}
-        </div>
+        {props.children}
       </AlchemyAccountProvider>
     </QueryClientProvider>
   );

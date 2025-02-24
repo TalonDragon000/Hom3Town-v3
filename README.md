@@ -16,11 +16,9 @@ A Next.js 13+ application featuring a character creation sim game with an accoun
 
 ![image](https://github.com/user-attachments/assets/ecd51cc9-02d7-48ce-bc2e-54c9446d18c2)
 
-> I won $2,500 in the Storyweaving category!! I&#39;m so glad the judges recognized the vision and appreciated the art of my project.
->
-> It wasn&#39;t easy going up against teams of experienced developers, so I appreciate a category that allowed artists to play to our strengths. 🤩🥰🥳❤️‍🔥💪👩‍🎨
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"> I won $2,500 in the Storyweaving category!! I&#39;m so glad the judges recognized the vision and appreciated the art of my project.
 
-- TalonDragon000 💜 (@talondragon000) [January 9, 2025](https://twitter.com/talondragon000/status/1877435147361882360?ref_src=twsrc%5Etfw)
+It wasn&#39;t easy going up against teams of experienced developers, so I appreciate a category that allowed artists to play to our strengths. 🤩🥰🥳❤️‍🔥💪👩‍🎨 </p>&mdash; TalonDragon000 💜 (@talondragon000) <a href="https://twitter.com/talondragon000/status/1877435147361882360?ref_src=twsrc%5Etfw"> January 9, 2025 </a></blockquote>
 
 ## About the Project
 
@@ -73,7 +71,6 @@ npm run dev
 Visit `http://localhost:3000` to view the application.
 
 ## Prerequisites
-
 Ensure the following are installed in the Project Folder `/Hom3Town-v3/account-kit-app`
 
 - Node.js 18+
@@ -116,7 +113,6 @@ Ensure the following are installed in the Project Folder `/Hom3Town-v3/account-k
 3. Configure Account Kit authentication
 
 ### Avatar Display Component
-
 ```tsx
 // Small size (32x64px)
 <Avatar 
@@ -132,7 +128,6 @@ Ensure the following are installed in the Project Folder `/Hom3Town-v3/account-k
 ```
 
 ### Character Creator
-
 ```tsx
 <CharacterCreatorClient defaultImagePath="/images/default-avatar.png" />
 ```
@@ -153,7 +148,6 @@ npm start
 ## Data Structure
 
 Avatar configurations are stored with the following structure:
-
 ```typescript
 interface SelectedFrames {
     body: number | null;

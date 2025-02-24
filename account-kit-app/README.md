@@ -1,5 +1,3 @@
-# Hom3Town
-
 See [accountkit.alchemy.com](https://accountkit.alchemy.com/) for the most up to date documentation!
 
 - [quick start guide](https://accountkit.alchemy.com/react/quickstart) to Account Kit
