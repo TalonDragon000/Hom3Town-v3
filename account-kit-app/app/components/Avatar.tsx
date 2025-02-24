@@ -20,6 +20,11 @@ const sizeMap = {
             width: 64,
             height: 128,
             scale: 0.5
+        },
+        defaultImage: {
+            width: 64,
+            height: 128,
+            scale: 1 // Scale from 256x512 to 32x64
         }
     },
     normal: {
@@ -28,6 +33,11 @@ const sizeMap = {
             width: 64,
             height: 128,
             scale: 1
+        },
+        defaultImage: {
+            width: 64,
+            height: 128,
+            scale: 1 // Scale from 256x512 to 64x128
         }
     }
 };
@@ -46,19 +56,21 @@ export const Avatar: React.FC<AvatarProps> = ({
 
     if (!hasAvatar) {
         return (
-            <div className={`${sizeConfig.container} relative ${className}`}>
-                <Image
-                    src={defaultImagePath}
-                    alt="Default Avatar"
-                    width={sizeConfig.sprite.width}
-                    height={sizeConfig.sprite.height}
-                    className="object-contain"
-                    style={{
-                        transform: `scale(${sizeConfig.sprite.scale})`,
-                        transformOrigin: 'top left'
-                    }}
-                    priority
-                />
+            <div className={`${sizeConfig.container} relative overflow-hidden ${className}`}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <Image
+                        src={defaultImagePath}
+                        alt="Default Avatar"
+                        width={sizeConfig.defaultImage.width}
+                        height={sizeConfig.defaultImage.height}
+                        className="object-contain"
+                        style={{
+                            transform: `scale(${sizeConfig.defaultImage.scale})`,
+                            transformOrigin: 'center'
+                        }}
+                        priority
+                    />
+                </div>
             </div>
         );
     }

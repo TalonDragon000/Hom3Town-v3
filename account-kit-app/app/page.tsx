@@ -1,7 +1,6 @@
 import "./globals.css";
 import Login from "./login/page";
 import PlayNowButton from './components/PlayNowButton';
-import VisitHomeBtn from './components/VisitHomeBtn';
 import { Avatar } from "./components/Avatar";
 
 export default function Home() {
@@ -20,7 +19,7 @@ export default function Home() {
       <div className="flex flex-col items-center text-center justify-center">
         <h1 className="text-6xl font-bold mb-10">Welcome to Hom3Town!</h1>
         <p className="text-xl mb-5">
-          Explore worlds to collect items for your avatar and home!
+          Your home in the metaverse!
         </p>
         <div className="flex justify-center gap-20">
           <div className="flex justify-center"><PlayNowButton /></div>
