@@ -8,12 +8,7 @@ import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Account Kit Quickstart",
-  description: "Account Kit Quickstart NextJS Template",
-};
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -22,14 +17,23 @@ export default function RootLayout({
   // https://accountkit.alchemy.com/react/ssr#persisting-the-account-state
   const initialState = cookieToInitialState(
     config,
-    headers().get("cookie") ?? undefined
+    (await headers()).get("cookie") ?? undefined
   );
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Providers initialState={initialState}>{children}</Providers>
+        <Providers initialState={initialState}>
+          <div className="relative min-h-screen">
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Hom3Town",
+  description: "Your home in the metaverse",
+};
