@@ -6,10 +6,10 @@ A Next.js 13+ application featuring a sprite-based character creator system with
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/hom3town.git
+git clone https://github.com/TalonDragon000/Hom3Town-v3.git
 
 # Navigate to the project directory
-cd hom3town
+cd account-kit-app
 
 # Install dependencies
 npm install

@@ -6,19 +6,33 @@ interface User {
     // Add other properties you need
 }
 
+interface AvatarMetadata {
+    cid: string;
+    pinataUrl: string;
+    timestamp: string;
+  }
+
+/* Access the IPFS metadata and use it anywhere in the application with the following:
+    const userDataManager = UserDataManager.getInstance();
+    const userData = userDataManager.getUserData();
+    const avatarMetadata = userData.avatarMetadata;
+*/
+
 export interface UserData {
     address: string | null;
     email: string | null;
-    username: string;
+    username: string | null;
     avatarConfig: SelectedFrames | null;
+    avatarMetadata: AvatarMetadata | null;
     lastUpdated: string;
 }
 
 export const DEFAULT_USER_DATA: UserData = {
     address: null,
     email: null,
-    username: 'Annon',
+    username: 'Anon',
     avatarConfig: null,
+    avatarMetadata: null,
     lastUpdated: new Date().toISOString()
 };
 

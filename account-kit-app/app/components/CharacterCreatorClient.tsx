@@ -114,7 +114,7 @@ const CharacterCreatorClient: React.FC<CharacterCreatorClientProps> = ({ default
     return (
         <div className="character-container">
             <CharacterPreview 
-                onClear={handleClear} 
+                onClear={handleClear}
                 onConfirm={handleConfirm}
                 selectedFrames={selectedFrames}
                 defaultImagePath={defaultImagePath}

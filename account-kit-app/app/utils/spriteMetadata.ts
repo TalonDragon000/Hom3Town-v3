@@ -181,13 +181,13 @@ export const SPRITE_METADATA: Record<string, SpriteProperties[]> = {
 
 // Helper functions
 export const getTraitOptions = (trait: string, gender?: 'Male' | 'Female' | 'Unisex'): SpriteProperties[] => {
-  console.log(`Getting trait options for: ${trait}`);
+  //console.log(`Getting trait options for: ${trait}`);
   
   // Get the exact key that matches the trait in SPRITE_METADATA
   const metadataKey = Object.keys(SPRITE_METADATA).find(
     key => key.toLowerCase() === trait.toLowerCase()
   );
-  console.log(`Found metadata key: ${metadataKey}`);
+  //console.log(`Found metadata key: ${metadataKey}`);
   
   if (!metadataKey) {
     console.log(`No metadata found for trait: ${trait}`);
@@ -195,15 +195,15 @@ export const getTraitOptions = (trait: string, gender?: 'Male' | 'Female' | 'Uni
   }
   
   const metadata = SPRITE_METADATA[metadataKey];
-  console.log(`Found metadata for ${trait}:`, metadata);
+  //console.log(`Found metadata for ${trait}:`, metadata);
   
   const options = metadata || [];
-  console.log(`Options before gender filter:`, options);
+  //console.log(`Options before gender filter:`, options);
   
   if (!gender) return options;
   
   const filtered = options.filter(sprite => sprite.gender === gender || sprite.gender === 'Unisex');
-  console.log(`Options after gender filter:`, filtered);
+  //console.log(`Options after gender filter:`, filtered);
   
   return filtered;
 };

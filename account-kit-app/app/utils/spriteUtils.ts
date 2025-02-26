@@ -16,7 +16,7 @@ export const calculateSpritePosition = (frameIndex: number): SpritePosition => {
 };
 
 export const getBackgroundStyle = (frameId: number, spriteSheetPath: string) => {
-    console.log(`Calculating background style for frame ${frameId}`);
+    //console.log(`Calculating background style for frame ${frameId}`);
     
     const { tileWidth, tileHeight, columns } = SPRITE_SHEET_CONFIG;
     
@@ -27,7 +27,7 @@ export const getBackgroundStyle = (frameId: number, spriteSheetPath: string) => 
     const xPos = col * tileWidth;
     const yPos = row * tileHeight;
     
-    console.log(`Frame ${frameId} position: row=${row}, col=${col}, x=${xPos}px, y=${yPos}px`);
+    //console.log(`Frame ${frameId} position: row=${row}, col=${col}, x=${xPos}px, y=${yPos}px`);
     
     const style = {
         backgroundImage: `url(${spriteSheetPath})`,
@@ -35,7 +35,7 @@ export const getBackgroundStyle = (frameId: number, spriteSheetPath: string) => 
         backgroundSize: `${SPRITE_SHEET_CONFIG.imageWidth}px ${SPRITE_SHEET_CONFIG.imageHeight}px`,
     };
     
-    console.log(`Generated style:`, style);
+    //console.log(`Generated style:`, style);
     
     return style;
 }; 

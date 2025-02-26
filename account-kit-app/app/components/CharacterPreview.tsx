@@ -31,22 +31,22 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
     }, [selectedFrames]);
 
     const hasAnySelection = selectedFrames.body !== null;
-    console.log("Has Any Selection:", hasAnySelection); // Debug log
+    // console.log("Has Any Selection:", hasAnySelection); // Debug log
 
     const renderLayer = (layer: Category) => {
         const frameIds = selectedFrames[layer];
-        console.log(`Attempting to render layer: ${layer}, frameIds:`, frameIds); // Debug log
+        // console.log(`Attempting to render layer: ${layer}, frameIds:`, frameIds); // Debug log
 
         // Early return if no frameIds (including 0)
         if (frameIds === null || frameIds === undefined) {
-            console.log(`No frameIds for layer ${layer}`);
+            //console.log(`No frameIds for layer ${layer}`);
             return null;
         }
 
         if (isMultiSelectCategory(layer)) {
             // Render multiple frames for multi-select categories
             return (frameIds as number[]).map(frameId => {
-                console.log(`Rendering multi-select frame ${frameId} for layer ${layer}`);
+                // console.log(`Rendering multi-select frame ${frameId} for layer ${layer}`);
                 const style = {
                     ...getBackgroundStyle(frameId, spriteSheetPath),
                 };
@@ -63,12 +63,12 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
         } else {
             // Render single frame for single-select categories
             const frameId = frameIds as number;
-            console.log(`Rendering single-select frame ${frameId} for layer ${layer}`);
+            //console.log(`Rendering single-select frame ${frameId} for layer ${layer}`);
             
             const style = {
                 ...getBackgroundStyle(frameId, spriteSheetPath),
             };
-            console.log(`Generated style for frame ${frameId}:`, style);
+            // console.log(`Generated style for frame ${frameId}:`, style);
             
             return (
                 <div
@@ -81,20 +81,6 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
             );
         }
     };
-
-  // const exportCharacter = () => {
-  //     if (previewRef.current) {
-  //         const characterElement = previewRef.current.querySelector('.preview-character');
-  //         if (characterElement) {
-  //             html2canvas(characterElement).then(canvas => {
-  //                 const link = document.createElement('a');
-  //                 link.href = canvas.toDataURL('image/png');
-  //                 link.download = 'character.png';
-  //                 link.click();
-  //             });
-  //         }
-  //     }
-  // };
 
   const exportCharacter = async () => {
     if (previewRef.current) {
@@ -109,11 +95,11 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
           // Download locally
           const link = document.createElement("a");
           link.href = canvas.toDataURL("image/png");
-          link.download = "character.png";
+          link.download = "Hom3TownAvatar.png";
           link.click();
 
           // Check if we have the Pinata JWT
-          const pinataJWT = process.env.PINATA_ADMIN_API_KEY;
+          const pinataJWT = process.env.NEXT_PUBLIC_PINATA_JWT;
           if (!pinataJWT) {
             throw new Error("Pinata JWT is not configured");
           }
@@ -133,7 +119,7 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
           // Initialize Pinata with proper JWT
           const pinata = new PinataSDK({
             pinataJwt: pinataJWT,
-            pinataGateway: process.env.PINATA_GATEWAY_API_KEY,
+            pinataGateway: process.env.NEXT_PUBLIC_PINATA_GATEWAY,
           });
 
           // Convert canvas to blob
@@ -144,15 +130,15 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
             }, "image/png");
           });
 
-          const file = new File([blob], "character.png", { type: "image/png" });
+          const file = new File([blob], "Hom3TownAvatar.png", { type: "image/png" });
 
           // Upload to Pinata
           const result = await pinata.upload.file(file, {
             metadata: {
-              name: "character.png",
+              name: "Hom3TownAvatar.png",
               keyvalues: {
                 timestamp: new Date().toISOString(),
-                type: "character-preview",
+                type: "Hom3Town Avatar",
               },
             },
           });
@@ -201,7 +187,7 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
                     </div>
                 ) : (
                     LAYER_ORDER.map((layer) => {
-                        console.log(`Processing layer: ${layer}`); // Debug log
+                        //console.log(`Processing layer: ${layer}`); // Debug log
                         return renderLayer(layer);
                     })
                 )}

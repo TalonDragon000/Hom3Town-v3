@@ -1,28 +1,30 @@
 'use client';
 /* eslint-disable react/no-unescaped-entities */
 import {
-    useAuthModal,
-    useLogout,
-    useSignerStatus,
-    useUser,
-  } from "@account-kit/react";
+  useAuthModal,
+  useLogout,
+  useSignerStatus,
+  useUser,
+} from "@account-kit/react";
 import "../globals.css";
 import Login from "../login/page";
 import EditProfileBtn from "../components/EditProfileBtn";
 import { UserDataManager } from "../utils/userDataManager";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import EditAvatar from "../components/EditAvatar";
 import { Avatar } from "../components/Avatar";
+import ExportCharacterBtn from "../components/ExportCharacterBtn";
 
 export default function Dashboard() {
     const user = useUser();
     const [userData, setUserData] = useState(UserDataManager.getInstance().getUserData());
+    const characterRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (user) {
             const userDataManager = UserDataManager.getInstance();
             const updatedData = userDataManager.updateFromAccountKit(user);
-            setUserData(updatedData);
+            updatedData.then(data => setUserData(data));
         }
     }, [user]);
 
@@ -48,19 +50,23 @@ export default function Dashboard() {
         <div className="flex justify-center gap-10">
           <div className="p-6 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
             <h3 className="text-xl font-bold mb-2">Your Home</h3>
-            <div className="flex justify-center gap-4" style={{flexDirection: 'column'}}>
+            <div className="flex justify-center gap-4" style={{flexDirection: 'column'}} ref={characterRef}>
               <p>Customize your avatar and home</p>
-              <div className="flex justify-center"><Avatar defaultImagePath={"/images/annon.png"} /></div>
+              <div className="flex justify-center preview-character">
+                <Avatar defaultImagePath={"/images/annon.png"} />
+              </div>
               <div className="flex justify-center"><EditAvatar /></div>
+              <div className="flex justify-center"><ExportCharacterBtn characterRef={characterRef} /></div>
             </div>
           </div>
           <div className="p-6 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
             <h3 className="text-xl font-bold mb-2">Your Profile</h3>
             <div className="flex justify-center gap-4">This is where you can view your profile and see your avatar and home.</div>
-            <div className="flex justify-center grid grid-cols-1 gap-4 mt-4">
+            <div className="justify-center grid grid-cols-1 gap-4 mt-4">
               <p><b>Username:</b> {userData.username}</p>
               <p><b>Email:</b> {user?.email || 'Not Connected'}</p>
-              <p><b>Account#:</b> {user?.address || 'Not Connected'}</p>
+              <p><b>Account ID:</b> {user?.address || 'Not Connected'}</p>
+              <p><b>Avatar CID:</b> {userData.avatarMetadata?.cid || 'Not Connected'}</p>
               <p><b>Last Updated:</b> {new Date(userData.lastUpdated).toLocaleString()}</p>
             </div>
             <div className="flex gap-4 mt-4"><EditProfileBtn /></div>

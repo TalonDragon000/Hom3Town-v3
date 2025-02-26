@@ -44,14 +44,14 @@ export const FRAME_TAGS: Record<Category, number[]> = {
   face: getTraitOptions('face').map(sprite => sprite.id),
   clothes: getTraitOptions('clothes').map(sprite => sprite.id),
   facialHair: getTraitOptions(getMetadataKey('facialHair')).map(sprite => {
-    console.log('Loading facial hair frame:', sprite);
+    //console.log('Loading facial hair frame:', sprite);
     return sprite.id;
   }),
   hair: getTraitOptions('hair').map(sprite => sprite.id)
 };
 
 // Debug log the frame tags
-console.log('Initialized FRAME_TAGS:', FRAME_TAGS);
+//console.log('Initialized FRAME_TAGS:', FRAME_TAGS);
 
 export const isBlankFrame = (frameId: number): boolean => {
   // Frame 23 is blank in the sprite sheet
@@ -62,7 +62,7 @@ export const isBlankFrame = (frameId: number): boolean => {
 
 export const determineGender = (bodyFrameId: number): Gender => {
   const bodySprite = SPRITE_METADATA.body.find(sprite => sprite.id === bodyFrameId);
-  console.log(`Determining gender for body frame ${bodyFrameId}:`, bodySprite?.gender);
+  //console.log(`Determining gender for body frame ${bodyFrameId}:`, bodySprite?.gender);
   return bodySprite?.gender.toLowerCase() as Gender || 'unisex';
 };
 
@@ -73,19 +73,19 @@ export const isFrameAllowedForGender = (frameId: number, gender: Gender): boolea
     .find(s => s.id === frameId);
 
   if (!sprite) {
-    console.log(`No sprite found for frame ${frameId}`);
+    //console.log(`No sprite found for frame ${frameId}`);
     return false;
   }
 
   const isAllowed = sprite.gender.toLowerCase() === gender || sprite.gender.toLowerCase() === 'unisex';
-  console.log(`Frame ${frameId} (${sprite.gender}) allowed for ${gender}: ${isAllowed}`);
+  //console.log(`Frame ${frameId} (${sprite.gender}) allowed for ${gender}: ${isAllowed}`);
   return isAllowed;
 };
 
 export const isMultiSelectCategory = (category: Category): boolean => {
   const isMulti = MULTI_SELECT_CATEGORIES.includes(category);
   if (category === 'facialHair') {
-    console.log('Checking if facialHair is multi-select:', isMulti);
+    //console.log('Checking if facialHair is multi-select:', isMulti);
   }
   return isMulti;
 };

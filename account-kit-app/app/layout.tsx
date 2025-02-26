@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Your home in the metaverse",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -22,7 +22,7 @@ export default function RootLayout({
   // https://accountkit.alchemy.com/react/ssr#persisting-the-account-state
   const initialState = cookieToInitialState(
     config,
-    headers().get("cookie") ?? undefined
+    (await headers()).get("cookie") ?? undefined
   );
 
   return (

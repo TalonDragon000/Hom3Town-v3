@@ -32,13 +32,13 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({
 
     const renderAssetButtons = () => {
         const frames = FRAME_TAGS[activeCategory] || [];
-        console.log(`Rendering frames for ${activeCategory}:`, frames);
+        //console.log(`Rendering frames for ${activeCategory}:`, frames);
         return frames.map((frameId) => {
-            console.log(`Rendering frame ${frameId} for ${activeCategory}`);
+            //console.log(`Rendering frame ${frameId} for ${activeCategory}`);
             
             // Skip blank frames
             if (isBlankFrame(frameId)) {
-                console.log(`Skipping blank frame ${frameId}`);
+                //console.log(`Skipping blank frame ${frameId}`);
                 return null;
             }
             
@@ -47,11 +47,11 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({
                 const isAllowed = isFrameAllowedForGender(frameId, selectedGender);
                 if (!isAllowed) {
                     if (activeCategory === 'facialHair') {
-                        console.log(`Facial hair frame ${frameId} not allowed for ${selectedGender}`);
+                        //console.log(`Facial hair frame ${frameId} not allowed for ${selectedGender}`);
                     }
                     return null;
                 } else if (activeCategory === 'facialHair') {
-                    console.log(`Facial hair frame ${frameId} allowed for ${selectedGender}`);
+                    //console.log(`Facial hair frame ${frameId} allowed for ${selectedGender}`);
                 }
             }
             
@@ -61,7 +61,7 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({
 
             const style = getBackgroundStyle(frameId, spriteSheetPath);
             if (activeCategory === 'facialHair') {
-                console.log(`Generated style for facial hair frame ${frameId}:`, style);
+                //console.log(`Generated style for facial hair frame ${frameId}:`, style);
             }
             
             return (

@@ -63,6 +63,7 @@
   padding: 15px 15px;
   color: white;
   width: 200px;
+  cursor: pointer;
 }
 
 .btn:hover {
