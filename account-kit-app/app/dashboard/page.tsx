@@ -13,7 +13,7 @@ import { UserDataManager } from "../utils/userDataManager";
 import { useEffect, useState, useRef } from "react";
 import EditAvatar from "../components/EditAvatar";
 import { Avatar } from "../components/Avatar";
-import ExportCharacterBtn from "../components/ExportCharacterBtn";
+import ClaimCharacterBtn from "../components/ClaimCharacterBtn";
 
 export default function Dashboard() {
     const user = useUser();
@@ -56,7 +56,7 @@ export default function Dashboard() {
                 <Avatar defaultImagePath={"/images/annon.png"} />
               </div>
               <div className="flex justify-center"><EditAvatar /></div>
-              <div className="flex justify-center"><ExportCharacterBtn characterRef={characterRef} /></div>
+              <div className="flex justify-center"><ClaimCharacterBtn characterRef={characterRef} /></div>
             </div>
           </div>
           <div className="p-6 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
