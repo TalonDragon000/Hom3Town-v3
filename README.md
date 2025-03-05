@@ -197,6 +197,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- Account Kit for authentication
-- Next.js team for the amazing framework
+- [Alchemy](https://www.alchemy.com/) for account kit authentication
+- [Shape](https://shape.network/) for world-building gateway and gas-back mechanism for future features
+- [Cursor](https://www.cursor.com/) IDE with AI Dev Chat feature (Honestly a lifesaver).
 - Contributors and maintainers
