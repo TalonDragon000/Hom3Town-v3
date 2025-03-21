@@ -24,6 +24,7 @@ export interface UserData {
     username: string | null;
     avatarConfig: SelectedFrames | null;
     avatarMetadata: AvatarMetadata | null;
+    tokenId: string | null;
     lastUpdated: string;
 }
 
@@ -33,6 +34,7 @@ export const DEFAULT_USER_DATA: UserData = {
     username: 'Anon',
     avatarConfig: null,
     avatarMetadata: null,
+    tokenId: null,
     lastUpdated: new Date().toISOString()
 };
 
