@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/login/page.tsx"
-  ],
+, "app/utils/alchemy-sdk-scripts.js"  ],
   "exclude": [
     "node_modules"
   ]
