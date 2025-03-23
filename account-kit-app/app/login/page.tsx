@@ -18,7 +18,7 @@ export default function AuthButton() {
         <>Loading...</>
       ) : user ? (
         <div className="flex gap-4 items-center">
-          <span>{(user.address ?? "annon").slice(0, 6)}...</span>
+          <span>{(user.address ?? "anon").slice(0, 6)}...</span>
           <button onClick={() => logout()}>
             Log out
           </button>
