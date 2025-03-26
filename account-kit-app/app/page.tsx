@@ -10,7 +10,7 @@ export default function Home() {
         <div className="nav-item-left font-bold"><a href="/">Hom3Town</a></div>
         <div className="nav-item-right mt-2">
             <Avatar 
-              defaultImagePath={"/images/annon.png"} 
+              defaultImagePath={"/images/anon.png"} 
               size="small"
             />
         </div>
