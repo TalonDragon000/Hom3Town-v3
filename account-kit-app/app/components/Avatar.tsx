@@ -10,34 +10,34 @@ import Image from 'next/image';
 interface AvatarProps {
     defaultImagePath: string;
     className?: string;
-    size?: 'small' | 'normal';
+    size: 'small' | 'normal';
 }
 
 const sizeMap = {
     small: {
-        container: 'w-8 h-16', // 32x64px container
-        sprite: {
-            width: 64,
-            height: 128,
-            scale: 0.5
-        },
-        defaultImage: {
-            width: 64,
-            height: 128,
-            scale: 1 // Scale from 256x512 to 32x64
-        }
-    },
-    normal: {
-        container: 'w-16 h-32', // 64x128px container
+        container: 'w-16 h-16', // 32x32px container
         sprite: {
             width: 64,
             height: 128,
             scale: 1
         },
         defaultImage: {
+            width: 150,
+            height: 150,
+            scale: 1
+        }
+    },
+    normal: {
+        container: 'w-32 h-32', // 64x64px container
+        sprite: {
             width: 64,
             height: 128,
-            scale: 1 // Scale from 256x512 to 64x128
+            scale: 1
+        },
+        defaultImage: {
+            width: 150,
+            height: 150,
+            scale: 1
         }
     }
 };
