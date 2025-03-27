@@ -17,15 +17,15 @@ export default function AuthButton() {
       {signerStatus.isInitializing ? (
         <>Loading...</>
       ) : user ? (
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center align-center">
           <span>{(user.address ?? "anon").slice(0, 6)}...</span>
           <button onClick={() => logout()}>
-            Log out
+            LOGOUT
           </button>
         </div>
       ) : (
         <button onClick={openAuthModal}>
-          Login
+          LOGIN
         </button>
       )}
     </>
