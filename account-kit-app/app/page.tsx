@@ -2,6 +2,7 @@ import "./globals.css";
 import Login from "./login/page";
 import PlayNowButton from './components/PlayNowButton';
 import { Avatar } from "./components/Avatar";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -41,7 +42,7 @@ export default function Home() {
         </div>
       </div>
       <footer className="fixed bottom-0 left-0 right-0">
-        <div>&copy; 2024 Hom3Town. All rights reserved.</div>
+        <Footer />
       </footer>
     </main>
   );
