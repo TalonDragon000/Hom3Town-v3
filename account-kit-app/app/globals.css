@@ -328,6 +328,19 @@ footer {
   margin: auto;
 }
 
+.footer-btn{
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  border: 2px solid #c1c3c6;
+}
+
+.footer-btn:hover {
+  background-color: #c1c3c6;
+  color: white;
+  color: #333;
+}
+
 .flex-grow {
   padding-bottom: 100px;
   padding-top: 100px;

@@ -16,20 +16,19 @@ const FooterButtons: React.FC = () => {
   };
 
   return (
-    <footer className="flex flex-col items-center p-4 bg-gray-100 border-t border-gray-300">
-      
-      <div className="flex justify-around w-full mt-5 mb-2">
-        <button className="px-2 py-1 text-sm btn" onClick={openShape}>
+    <footer>
+      <div className="justify-items-center w-full mt-5 mb-2 grid grid-cols-3 gap-4 items-center">
+        <button className="footer-btn" onClick={openShape}>
           Shape
         </button>
-        <button className="px-2 py-1 text-sm btn" onClick={openAlchemy}>
+        <button className="footer-btn" onClick={openAlchemy}>
           Powered by Alchemy
         </button>
-        <button className="px-2 py-1 text-sm btn" onClick={openGitHub}>
+        <button className="footer-btn" onClick={openGitHub}>
           Github
         </button>
+      <div className="text-center col-span-3">&copy; 2025 Hom3Town. All rights reserved.</div>
       </div>
-      <div className="text-black mb-2 mt-2">&copy; 2024 Hom3Town. All rights reserved.</div>
     </footer>
   );
 };
