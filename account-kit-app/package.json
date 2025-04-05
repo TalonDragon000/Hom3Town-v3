@@ -14,6 +14,7 @@
     "@account-kit/infra": "^4.0.0",
     "@account-kit/react": "^4.0.0",
     "@tanstack/react-query": "^5.50.1",
+    "dotenv": "^16.4.7",
     "@types/jest": "^29.5.14",
     "alchemy-sdk": "^3.5.4",
     "canvas-confetti": "^1.9.3",
