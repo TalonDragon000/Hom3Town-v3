@@ -19,7 +19,7 @@ export default function AuthButton() {
       ) : user ? (
         <div className="flex flex-col gap-2 p-2">
           <p className="text-xl font-bold">Success!</p>
-          Logged in as {user.address ?? "annon"}.
+          Logged in as {user?.address ?? "anon"}.
           <button className="btn btn-primary mt-6" onClick={() => logout()}>
             Log out
           </button>

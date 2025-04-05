@@ -12,15 +12,16 @@ dotenv.config();
 const uiConfig: AlchemyAccountsUIConfig = {
   illustrationStyle: "outline",
   auth: {
-    sections: [[{ type: "social", authProviderId: "google", mode: "popup" }]],
+    sections: [[{ type: "social", authProviderId: "google", mode: "popup" }], 
+    [{ type: "external_wallets", walletConnect: { projectId: `${process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID}` } }]],
     addPasskeyOnSignup: false,
   },
-  supportUrl: "https://github.com/TalonDragon000/Hom3Town/discussions",
+  supportUrl: "https://discord.gg/alchemy-builders",
 };
 
 export const config = createConfig(
   {
-    transport: alchemy({ apiKey: "ALCHEMY_API_KEY" }),
+    transport: alchemy({ apiKey: `${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}` }),
     chain: shapeSepolia,
     ssr: true, // more about ssr: https://accountkit.alchemy.com/react/ssr
     storage: cookieStorage, // more about persisting state with cookies: https://accountkit.alchemy.com/react/ssr#persisting-the-account-state

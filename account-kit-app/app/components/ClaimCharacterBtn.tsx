@@ -5,12 +5,12 @@ import html2canvas from 'html2canvas';
 import { PinataSDK } from 'pinata';
 import { UserDataManager } from '../utils/userDataManager';
 
-interface ExportCharacterProps {
+interface ClaimCharacterProps {
   characterRef: React.RefObject<HTMLDivElement>;
 }
 
-const ExportCharacter: React.FC<ExportCharacterProps> = ({ characterRef }) => {
-  const exportCharacter = async () => {
+const ClaimCharacter: React.FC<ClaimCharacterProps> = ({ characterRef }) => {
+  const claimCharacter = async () => {
     if (!characterRef.current) {
       console.error('Character element not found');
       return;
@@ -32,7 +32,7 @@ const ExportCharacter: React.FC<ExportCharacterProps> = ({ characterRef }) => {
       // Download locally
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
-      link.download = "character.png";
+      link.download = "Hom3TownAvatar.png";
       link.click();
 
       // Check if we have the Pinata JWT
@@ -92,9 +92,9 @@ const ExportCharacter: React.FC<ExportCharacterProps> = ({ characterRef }) => {
       });
 
       console.log("Successfully uploaded to IPFS:", result);
-      alert("Character successfully exported and uploaded to IPFS!");
+      alert("Character successfully claimed!");
     } catch (error) {
-      console.error("Error during export/upload:", error);
+      console.error("Error during claim:", error);
       if (error instanceof Error) {
         alert(`Error: ${error.message}`);
       } else {
@@ -104,10 +104,10 @@ const ExportCharacter: React.FC<ExportCharacterProps> = ({ characterRef }) => {
   };
 
   return (
-    <button className="btn text-xl m-auto" onClick={exportCharacter}>
-      Export .PNG
+    <button className="btn text-xl m-auto" onClick={claimCharacter}>
+      Claim Avatar
     </button>
   );
 };
 
-export default ExportCharacter;
+export default ClaimCharacter;
