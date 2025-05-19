@@ -10,7 +10,7 @@ export default function EditAvatar() {
       className="btn text-xl mt-6"
       onClick={() => router.push('/create-avatar')}
     >
-      Edit Avatar
+      Edit
     </button>
   );
 }
