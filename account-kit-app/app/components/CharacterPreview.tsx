@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Category, LAYER_ORDER, isMultiSelectCategory } from '../utils/characterData';
 import { getBackgroundStyle } from '../utils/spriteUtils';
 import html2canvas from 'html2canvas';
 import {PinataSDK} from 'pinata';
+import { useUser, useSignerStatus } from '@account-kit/react';
+import { UserDataManager } from '../utils/userDataManager';
+import MintButton from './MintButton';
 
 interface CharacterPreviewProps {
     onClear: () => void;
@@ -25,6 +28,9 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
     showError,
 }) => {
   const previewRef = useRef<HTMLDivElement>(null);
+  const user = useUser();
+  const { isConnected } = useSignerStatus();
+  const [showMintSuccess, setShowMintSuccess] = useState(false);
     // Debug log for selectedFrames
     useEffect(() => {
         console.log("Selected Frames:", selectedFrames);
@@ -98,75 +104,36 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
           link.download = "Hom3TownAvatar.png";
           link.click();
 
-          // Check if we have the Pinata JWT
-          const pinataJWT = process.env.NEXT_PUBLIC_PINATA_JWT;
-          if (!pinataJWT) {
-            throw new Error("Pinata JWT is not configured");
-          }
-
-          // Validate JWT format (should have 3 parts separated by dots)
-          const jwtParts = pinataJWT.split(".");
-          if (jwtParts.length !== 3) {
-            throw new Error("Invalid JWT format - should have 3 segments");
-          }
-
-          console.log("JWT validation:", {
-            length: pinataJWT.length,
-            segments: jwtParts.length,
-            firstChars: pinataJWT.substring(0, 10) + "...",
-          });
-
-          // Initialize Pinata with proper JWT
-          const pinata = new PinataSDK({
-            pinataJwt: pinataJWT,
-            pinataGateway: process.env.NEXT_PUBLIC_PINATA_GATEWAY,
-          });
-
-          // Convert canvas to blob
-          const blob = await new Promise<Blob>((resolve, reject) => {
-            canvas.toBlob((blob) => {
-              if (blob) resolve(blob);
-              else reject(new Error("Failed to create blob"));
-            }, "image/png");
-          });
-
-          const file = new File([blob], "Hom3TownAvatar.png", { type: "image/png" });
-
-          // Upload to Pinata
-          const result = await pinata.upload.file(file, {
-            metadata: {
-              name: "Hom3TownAvatar.png",
-              keyvalues: {
-                timestamp: new Date().toISOString(),
-                type: "Hom3Town Avatar",
-              },
-            },
-          });
-
-          console.log("Successfully uploaded to IPFS:", result);
-          alert("Character successfully exported and uploaded to IPFS!");
+          alert("Character exported as PNG!");
         } catch (error) {
-          console.error("Error during export/upload:", error);
-
-          // More specific error messages
-          if (error instanceof Error) {
-            if (error.message.includes("INVALID_CREDENTIALS")) {
-              alert(
-                "Failed to authenticate with Pinata. Please check your JWT configuration."
-              );
-            } else if (error.message === "Pinata JWT is not configured") {
-              alert(
-                "Pinata JWT is not configured. Please check your environment variables."
-              );
-            } else {
-              alert(`Error: ${error.message}`);
-            }
-          } else {
-            alert("An unexpected error occurred during export/upload.");
-          }
+          console.error("Error during export:", error);
+          alert("Failed to export character");
         }
       }
     }
+  };
+
+  const handleConfirm = async () => {
+    if (!isConnected) {
+      alert('Please log in to save your character');
+      return;
+    }
+
+    // Save avatar config to local storage
+    const userDataManager = UserDataManager.getInstance();
+    await userDataManager.saveAvatarConfig(selectedFrames);
+
+    // Call original onConfirm (e.g., navigate away)
+    onConfirm();
+  };
+
+  const handleMintSuccess = (tokenId: string) => {
+    setShowMintSuccess(true);
+    setTimeout(() => setShowMintSuccess(false), 5000);
+  };
+
+  const handleMintError = (error: string) => {
+    console.error('Mint error:', error);
   };
 
     return (
@@ -194,10 +161,22 @@ const CharacterPreview: React.FC<CharacterPreviewProps> = ({
             </div>
             <div className="text-center mt-4">
                 <button className="action-btn" onClick={onClear}>CLEAR</button>
-                <button className="action-btn" onClick={exportCharacter}>EXPORT</button>
-                <button className="action-btn" onClick={onConfirm}>CONFIRM</button>
+                <button className="action-btn" onClick={exportCharacter}>EXPORT PNG</button>
+                <button className="action-btn" onClick={handleConfirm}>SAVE CONFIG</button>
                 <button className="action-btn" onClick={() => window.location.href = '/dashboard'}>RETURN HOME</button>
             </div>
+            <div className="mt-4 flex justify-center">
+                <MintButton 
+                    characterRef={previewRef}
+                    onMintSuccess={handleMintSuccess}
+                    onMintError={handleMintError}
+                />
+            </div>
+            {showMintSuccess && (
+                <div className="text-center mt-2 text-green-600 font-bold">
+                    🎉 Avatar minted successfully! Welcome home! 🎉
+                </div>
+            )}
             <div className="error-message" style={{ display: showError ? 'block' : 'none' }}>
                 Please log in to save your character
             </div>
