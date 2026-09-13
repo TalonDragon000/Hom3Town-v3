@@ -7,6 +7,8 @@ import { LAYER_ORDER, isMultiSelectCategory, Category } from '../utils/character
 import { getBackgroundStyle } from '../utils/spriteUtils';
 import Image from 'next/image';
 
+const DEFAULT_BASE_URI = process.env.NEXT_PUBLIC_DEFAULT_AVATAR_BASE_URI || '/images/anon.png';
+
 interface AvatarProps {
     defaultImagePath: string;
     className?: string;
@@ -59,7 +61,7 @@ export const Avatar: React.FC<AvatarProps> = ({
             <div className={`${sizeConfig.container} relative overflow-hidden ${className}`}>
                 <div className="absolute inset-0 flex items-center justify-center">
                     <Image
-                        src={defaultImagePath}
+                        src={DEFAULT_BASE_URI}
                         alt="Default Avatar"
                         width={sizeConfig.defaultImage.width}
                         height={sizeConfig.defaultImage.height}
@@ -69,6 +71,11 @@ export const Avatar: React.FC<AvatarProps> = ({
                             transformOrigin: 'center'
                         }}
                         priority
+                        onError={(e) => {
+                            // Fallback if DEFAULT_BASE_URI fails
+                            const target = e.target as HTMLImageElement;
+                            target.src = defaultImagePath;
+                        }}
                     />
                 </div>
             </div>
